@@ -7,6 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   isAuth = false;
+  lastUpdate = new Promise((resolve, reject) => {
+    const date = new Date();
+    setTimeout(
+      () => {
+      resolve(date);
+    }, 2000
+  );
+});
 
   appareils = [
     {
@@ -23,18 +31,14 @@ export class AppComponent {
     }
   ];
 
-  turnedOn="On";
-  turnedOff="Off";
-
   constructor() {
     setTimeout(
-      () =>
-      {this.isAuth = true;
+      () => {this.isAuth = true;
     }, 4000
     );
   }
 
   onTurnOn() {
-    console.log("Turn everything on!")
+    console.log('Everything is OOOONNNNN!');
   }
 }
