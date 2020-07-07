@@ -1,44 +1,46 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AppareilService} from './services/appareil.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   isAuth = false;
-  lastUpdate = new Promise((resolve, reject) => {
+
+  appareils: any[];
+
+  lastUpdate = new Promise((resolve) => {
     const date = new Date();
     setTimeout(
       () => {
-      resolve(date);
-    }, 2000
-  );
-});
+        resolve(date);
+      }, 2000
+    );
+  });
 
-  appareils = [
-    {
-      name: 'Entry Hall Light',
-      status: 'Off'
-    },
-    {
-      name: 'Lounge Light',
-      status: 'On'
-    },
-    {
-      name: 'Bedroom Light',
-      status: 'Off'
-    }
-  ];
-
-  constructor() {
+  constructor(private appareilService: AppareilService) {
     setTimeout(
-      () => {this.isAuth = true;
-    }, 4000
+      () => {
+        this.isAuth = true;
+      }, 4000
     );
   }
 
+  ngOnInit() {
+    this.appareils = this.appareilService.appareils;
+  }
+
   onTurnOn() {
-    console.log('Everything is OOOONNNNN!');
+    this.appareilService.switchOnAll();
+  }
+
+  onTurnOff() {
+    if (confirm('Are you sure you want to turn eveything off?')) {
+      this.appareilService.switchOffAll();
+    } else {
+      return null;
+    }
   }
 }
