@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {AppareilService} from './services/appareil.service';
 
 @Component({
   selector: 'app-root',
@@ -7,40 +6,8 @@ import {AppareilService} from './services/appareil.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  isAuth = false;
-
-  appareils: any[];
-
-  lastUpdate = new Promise((resolve) => {
-    const date = new Date();
-    setTimeout(
-      () => {
-        resolve(date);
-      }, 2000
-    );
-  });
-
-  constructor(private appareilService: AppareilService) {
-    setTimeout(
-      () => {
-        this.isAuth = true;
-      }, 4000
-    );
-  }
+  constructor() { }
 
   ngOnInit() {
-    this.appareils = this.appareilService.appareils;
-  }
-
-  onTurnOn() {
-    this.appareilService.switchOnAll();
-  }
-
-  onTurnOff() {
-    if (confirm('Are you sure you want to turn eveything off?')) {
-      this.appareilService.switchOffAll();
-    } else {
-      return null;
-    }
   }
 }
