@@ -7,15 +7,20 @@
         <app-appareil *ngFor="let appareil of appareils; let i = index"
                       [appareilName]="appareil.name"
                       [appareilStatus]="appareil.status"
-                      [index]="i"></app-appareil>
+                      [index]="i"
+                      [id]="appareil.id"></app-appareil>
       </ul>
       <button class="btn btn-success"
-              [disabled]="!isAuth"
+              [disabled]="isAuth"
               (click)="onTurnOn()">All On!</button>
 
       <button class="btn btn-danger"
-              [disabled]="!isAuth"
+              [disabled]="isAuth"
               (click)="onTurnOff()">All Off!</button>
+
+      <button style="float: right" class="btn btn-danger"
+              *ngIf="isAuth"
+              (click)="onSignOut()">Log Out</button>
     </div>
   </div>
 </div>

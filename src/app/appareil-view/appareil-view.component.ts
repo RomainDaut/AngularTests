@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AppareilService} from '../services/appareil.service';
+import {AuthService} from '../services/auth.service';
+import {Route, Router} from '@angular/router';
 
 @Component({
   selector: 'app-appareil-view',
@@ -7,7 +9,7 @@ import {AppareilService} from '../services/appareil.service';
   styleUrls: ['./appareil-view.component.scss']
 })
 export class AppareilViewComponent implements OnInit {
-  isAuth = false;
+  isAuth = true;
 
   appareils: any[];
 
@@ -20,12 +22,7 @@ export class AppareilViewComponent implements OnInit {
     );
   });
 
-  constructor(private appareilService: AppareilService) {
-    setTimeout(
-      () => {
-        this.isAuth = true;
-      }, 4000
-    );
+  constructor(private appareilService: AppareilService, private authService: AuthService, private router: Router) {
   }
 
   ngOnInit() {
@@ -42,5 +39,10 @@ export class AppareilViewComponent implements OnInit {
     } else {
       return null;
     }
+  }
+  onSignOut() {
+    this.authService.signOut();
+    console.log('User signed out!');
+    this.router.navigate(['auth']);
   }
 }
