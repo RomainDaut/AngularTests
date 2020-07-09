@@ -1,14 +1,17 @@
 export class AppareilService {
   appareils = [
     {
+      id: 1,
       name: 'Entry Hall Light',
       status: 'Off'
     },
     {
+      id: 2,
       name: 'Lounge Light',
       status: 'On'
     },
     {
+      id: 3,
       name: 'Bedroom Light',
       status: 'Off'
     }
@@ -28,5 +31,13 @@ export class AppareilService {
   }
   switchOneOff(i: number) {
     this.appareils[i].status = 'Off';
+  }
+  getAppareilById(id: number){
+    const appareil = this.appareils.find(
+      (s) => {
+        return s.id === id;
+      }
+    );
+    return appareil;
   }
 }
