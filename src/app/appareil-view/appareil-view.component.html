@@ -11,12 +11,16 @@
                       [id]="appareil.id"></app-appareil>
       </ul>
       <button class="btn btn-success"
-              [disabled]="!isAuth"
+              [disabled]="isAuth"
               (click)="onTurnOn()">All On!</button>
 
       <button class="btn btn-danger"
-              [disabled]="!isAuth"
+              [disabled]="isAuth"
               (click)="onTurnOff()">All Off!</button>
+
+      <button style="float: right" class="btn btn-danger"
+              *ngIf="isAuth"
+              (click)="onSignOut()">Log Out</button>
     </div>
   </div>
 </div>

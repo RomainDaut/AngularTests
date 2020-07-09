@@ -9,8 +9,9 @@ import { AppareilService } from './services/appareil.service';
 import { AuthComponent } from './auth/auth.component';
 import { AppareilViewComponent } from './appareil-view/appareil-view.component';
 import { AuthService } from './services/auth.service';
-import { Routes } from '@angular/router';
 import { SingleAppareilComponent } from './single-appareil/single-appareil.component';
+import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
+import {AuthGuard} from './services/auth-guard.service';
 
 
 @NgModule({
@@ -19,14 +20,15 @@ import { SingleAppareilComponent } from './single-appareil/single-appareil.compo
     AppareilComponent,
     AuthComponent,
     AppareilViewComponent,
-    SingleAppareilComponent
+    SingleAppareilComponent,
+    FourOhFourComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
   ],
-  providers: [AppareilService, AuthService],
+  providers: [AppareilService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 

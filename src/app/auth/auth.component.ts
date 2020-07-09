@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../services/auth.service';
-import {stringify} from 'querystring';
 import {Router} from '@angular/router';
 
 @Component({
@@ -30,5 +29,4 @@ export class AuthComponent implements OnInit {
     this.authService.signOut();
     console.log('User signed out!');
   }
-
 }
